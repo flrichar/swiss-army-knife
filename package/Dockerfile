@@ -56,7 +56,7 @@ RUN apt-get update && \
     chmod +x /usr/bin/yq && \
     mkdir -p /root/.kube
 
-ENV LOGLEVEL_TAG v0.1
+ENV LOGLEVEL_TAG v0.1.6
 RUN curl -sfSL https://github.com/rancher/loglevel/releases/download/${LOGLEVEL_TAG}/loglevel-amd64-${LOGLEVEL_TAG}.tar.gz | tar xvzf - -C /usr/bin
 COPY swiss-army-knife /usr/bin/
 WORKDIR /root
