@@ -14,7 +14,6 @@ RUN apt-get update && \
         iperf \
         iperf3 \
         iproute2 \
-        ipsec-tools \
         ipset \
         iptables \
         iputils-ping \
@@ -27,8 +26,8 @@ RUN apt-get update && \
         manpages-posix \
         mtr \
         net-tools \
-        netcat \
-        netcat-openbsd \
+        ncat \
+        netcat-traditional \
         openssl \
         openssh-client \
         psmisc \
@@ -41,18 +40,17 @@ RUN apt-get update && \
         tree \
         ngrep \
         vim \
+        wireguard-tools \
         wget && \
     rm -rf /var/lib/apt/lists/* && \
-    mv /usr/sbin/tcpdump /usr/bin/tcpdump && \
-    mv /usr/sbin/traceroute /usr/bin/traceroute && \
-    curl -sLf https://get.docker.com/builds/Linux/x86_64/docker-1.10.3 > /usr/bin/docker && \
-    chmod +x /usr/bin/docker && \
-    curl -sLf https://storage.googleapis.com/kubernetes-release/release/v1.16.8/bin/linux/amd64/kubectl > /usr/local/bin/kubectl-1.16 && \
-    curl -sLf https://storage.googleapis.com/kubernetes-release/release/v1.17.4/bin/linux/amd64/kubectl > /usr/local/bin/kubectl-1.17 && \
-    curl -sLf https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/linux/amd64/kubectl > /usr/local/bin/kubectl-1.18 && \
+    curl -sL https://github.com/containerd/nerdctl/releases/download/v1.7.6/nerdctl-1.7.6-linux-amd64.tar.gz | tar Czxv /usr/bin/ nerdctl && \
+    chmod +x /usr/bin/nerdctl && \
+    curl -sLf https://storage.googleapis.com/kubernetes-release/release/v1.28.13/bin/linux/amd64/kubectl > /usr/local/bin/kubectl-1.28 && \
+    curl -sLf https://storage.googleapis.com/kubernetes-release/release/v1.29.8/bin/linux/amd64/kubectl > /usr/local/bin/kubectl-1.29 && \
+    curl -sLf https://storage.googleapis.com/kubernetes-release/release/v1.30.4/bin/linux/amd64/kubectl > /usr/local/bin/kubectl-1.30 && \
     chmod +x /usr/local/bin/kubectl* && \
-    ln -s /usr/local/bin/kubectl-1.18 /usr/local/bin/kubectl && \
-    wget https://github.com/mikefarah/yq/releases/download/v4.23.1/yq_linux_amd64 -O /usr/bin/yq && \
+    ln -s /usr/local/bin/kubectl-1.29 /usr/local/bin/kubectl && \
+    wget https://github.com/mikefarah/yq/releases/download/v4.44.3/yq_linux_amd64 -O /usr/bin/yq && \
     chmod +x /usr/bin/yq && \
     mkdir -p /root/.kube
 
